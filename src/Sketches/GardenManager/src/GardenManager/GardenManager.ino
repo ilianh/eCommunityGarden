@@ -20,6 +20,7 @@ int errorPin          = 16;
 // Set the delay between each loop (in milliseconds)
 int delayTime = 2000;
 
+LightSensor lightSensor;
 
 void setup() //
 {
@@ -47,7 +48,7 @@ void setupGardenManager()
   initIrrigation();
   
   // Initialize the light sensor and light control
-  initLight();
+  lightSensor.init(1000, 0, 100, 0, A3, 8, 80);
 
   // Declare output pins
   pinMode(powerLedPin, OUTPUT);  
@@ -69,7 +70,7 @@ void loopGardenManager()
   
   int moistureValue = getMoistureValue();
   
-  int lightValue = getLightValue();
+  int lightValue = lightSensor.getValue();
 
   checkHumidityTemperatureValues();
 
