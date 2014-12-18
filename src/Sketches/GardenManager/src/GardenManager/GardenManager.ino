@@ -20,7 +20,7 @@ int errorPin          = 16;
 // Set the delay between each loop (in milliseconds)
 int delayTime = 2000;
 
-LightSensor lightSensor;
+LightSensor lightSensor(1000, 0, 100, 0, A3, 8, 80);
 
 void setup() //
 {
@@ -48,7 +48,7 @@ void setupGardenManager()
   initIrrigation();
   
   // Initialize the light sensor and light control
-  lightSensor.init(1000, 0, 100, 0, A3, 8, 80);
+  lightSensor.init();
 
   // Declare output pins
   pinMode(powerLedPin, OUTPUT);  
