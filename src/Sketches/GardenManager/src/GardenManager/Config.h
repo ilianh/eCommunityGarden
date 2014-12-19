@@ -40,6 +40,13 @@ struct SDCardConfig
     int chipSelect;
 };
 
+struct IrrigationConfig
+{
+    int threshold;
+    int wateringLedPin;
+    int wateringPin;  
+};
+
 struct SectionConfig
 {
     LightSensorConfig l0;
@@ -56,6 +63,7 @@ struct FarmConfig
     SectionConfig s0;
     SDCardConfig sd0;
     FlowMeterConfig fm0;
+    IrrigationConfig i0;
 };
 
 #endif // CONFIG_H_

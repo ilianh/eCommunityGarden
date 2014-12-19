@@ -61,7 +61,7 @@ void loopGardenManager()
   //logFloatValue("Fl", flowRateValue, 4);
   logFinish();
 
-  checkIrrigation();
+  //checkIrrigation();
   
   delay(delayTime);
 }

@@ -6,6 +6,7 @@
 class Section;
 class SDCard;
 class FlowMeter;
+class Irrigation;
 
 class Farm
 {
@@ -16,6 +17,7 @@ public:
     Section **m_pSections;
     SDCard *m_pSDCard;
     FlowMeter *m_pFlowMeter;
+    Irrigation *m_pIrrigation;
     
     Farm();
     ~Farm();

@@ -1,34 +1,32 @@
 #include <Arduino.h>
-
+#include "Irrigation.h"
 #include "MoistureSensor.h"
 
-int threshold         = 20; // The minimum soil moisture level, before switching on the irrigation.
-
-// LED pins
-int wateringLedPin    = 15;
-
-// Output pins
-int wateringPin       = 9;
-
-void checkIrrigation()
+void Irrigation::configure(IrrigationConfig cfg)
 {
-  int moistureValue = 0; //getMoistureValue();
-
-  if (moistureValue < threshold)
-  {
-    digitalWrite(wateringPin, HIGH);
-    digitalWrite(wateringLedPin, HIGH);
-  }
-  else
-  {
-    digitalWrite(wateringPin, LOW);
-    digitalWrite(wateringLedPin, LOW);
-  }
+    m_cfg = cfg;
 }
 
-void initIrrigation()
+void Irrigation::setup()
 {
-  pinMode(wateringPin, OUTPUT); 
-  pinMode(wateringLedPin, OUTPUT);  
+    pinMode(m_cfg.wateringPin, OUTPUT); 
+    pinMode(m_cfg.wateringLedPin, OUTPUT);  
 }
+
+void Irrigation::checkIrrigation()
+{
+    int moistureValue = 0; //getMoistureValue();
+
+    if (moistureValue < m_cfg.threshold)
+    {
+        digitalWrite(m_cfg.wateringPin, HIGH);
+        digitalWrite(m_cfg.wateringLedPin, HIGH);
+    }
+    else
+    {
+        digitalWrite(m_cfg.wateringPin, LOW);
+        digitalWrite(m_cfg.wateringLedPin, LOW);
+    }
+}
+
 
