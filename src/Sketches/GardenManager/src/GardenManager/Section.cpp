@@ -1,5 +1,6 @@
 #include "Section.h"
 #include "LightSensor.h"
+#include <stddef.h>
 
 Section::Section()
 {

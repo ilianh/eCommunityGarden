@@ -13,8 +13,6 @@ public:
     int m_iValueHigh;
     int m_iValueLow;
     int m_iSensorPin;
-
-    MoistureSensor
 };
 
 #endif /* MOISTURESENSOR_H_ */
