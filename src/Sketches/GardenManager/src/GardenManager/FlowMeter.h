@@ -9,7 +9,7 @@ public:
     volatile byte m_bFlowPulseCount;
     
     void configure(FlowMeterConfig cfg); 
-    void init();
+    void setup();
     void flowPulseCounter();
     float getFlowRate();
 };

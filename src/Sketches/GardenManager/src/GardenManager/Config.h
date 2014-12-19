@@ -27,6 +27,12 @@ struct TemperatureHumidityConfig
     int dht11Pin;
 }
 
+struct FlowMeterConfig
+{
+    int sensorPin;
+    byte sensorInterrupt;
+}
+
 struct SectionConfig
 {
     LightSensorConfig l0;
@@ -39,7 +45,8 @@ struct FarmConfig
     // Declare output pins
     int powerLedPin;
     int errorPin;
-    
+
+    FlowMeterConfig fm0;
     SectionConfig s0;
 };
 

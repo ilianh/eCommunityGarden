@@ -8,7 +8,7 @@ void FlowMeter::configure(FlowMeterConfig cfg)
     m_cfg = cfg;
 }
 
-void FlowMeter::init()
+void FlowMeter::setup()
 {
     pinMode(m_cfg.sensorPin, INPUT);
     digitalWrite(m_cfg.sensorPin, HIGH);
