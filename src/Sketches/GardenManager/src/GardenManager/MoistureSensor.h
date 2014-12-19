@@ -6,13 +6,13 @@ int getMoistureValue();
 class MoistureSensor
 {
 public:
-    // Moisture data variables
+    
+    MoistureSensor m_cfg;
     int m_iValue;
-    int m_iSensorHigh;
-    int m_iSensorLow;
-    int m_iValueHigh;
-    int m_iValueLow;
-    int m_iSensorPin;
+
+    void configure(MoistureSensorConfig cfg);
+    void init();
+
 };
 
 #endif /* MOISTURESENSOR_H_ */

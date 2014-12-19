@@ -16,9 +16,22 @@ struct LightSensorConfig
     int controlThreshold;
 };
 
+struct MoistureSensorConfig
+{
+    int sensorHigh, sensorLow, valueHigh, valueLow;
+    int sensorPin;
+}
+
+struct TemperatureHumidityConfig
+{
+    int dht11Pin;
+}
+
 struct SectionConfig
 {
     LightSensorConfig l0;
+    MoistureSensorConfig m0;
+    TemperatureHumidityConfig th0;
 };
 
 struct FarmConfig

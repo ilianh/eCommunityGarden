@@ -1,16 +1,21 @@
 #include "Logger.h"
 #include <DHT11.h>
 
-int dht11Pin = 3;
-float humidityValue = 0;
-float temperatureValue = 0;
+void TemperatureHumiditySensor::configure(TemperatureHumiditySensorConfig cfg)
+{
+   m_cfg = cfg;
+} 
 
-DHT11 dht11(dht11Pin);
+void TemperatureHumiditySensor::init()
+{
+    DHT11 dht11(m_cfg.dht11Pin);
+}
 
-void checkHumidityTemperatureValues()
+
+void TemperatureHumiditySensor::checkHumidityTemperatureValues()
 {
   int err;
-  if((err=dht11.read(humidityValue, temperatureValue))==0)
+  if((err=dht11.read(m_fHumidityValue, m_fTemperatureValue))==0)
   {
   }
   else
@@ -19,12 +24,12 @@ void checkHumidityTemperatureValues()
   }
 }
 
-float getHumidityValue()
+float TemperatureHumiditySensor::getHumidityValue()
 {
-  return humidityValue;
+  return m_fHumidityValue;
 }
 
-float getTemperatureValue()
+float TemperatureHumiditySensor::getTemperatureValue()
 {
-  return temperatureValue;
+  return m_fTemperatureValue;
 }
