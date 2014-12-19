@@ -13,7 +13,7 @@ void Irrigation::setup()
     pinMode(m_cfg.wateringLedPin, OUTPUT);  
 }
 
-void Irrigation::checkIrrigation()
+void Irrigation::irrigate()
 {
     int moistureValue = 0; //getMoistureValue();
 
@@ -28,5 +28,3 @@ void Irrigation::checkIrrigation()
         digitalWrite(m_cfg.wateringLedPin, LOW);
     }
 }
-
-

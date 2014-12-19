@@ -11,11 +11,10 @@
 
 Farm::Farm() : m_iSectionCount(0), m_pSections(NULL)
 {
-    addSection(new Section());
     m_pSDCard = new SDCard();
     m_pFlowMeter = new FlowMeter();
     m_pIrrigation = new Irrigation();
-    //...
+    addSection(new Section());
 }
 
 Farm::~Farm()
@@ -103,9 +102,9 @@ void Farm::loop()
     for(unsigned int i = 0; i < m_iSectionCount; i++)
         m_pSections[i]->loop();
     
-    //checkIrrigation();
     logFloatValue("Fl", m_pFlowMeter->getFlowRate(), 4);
-
+    m_pIrrigation->irrigate();
+    
     logFinish();
     
     delay(m_cfg.delayTime);

@@ -10,7 +10,7 @@ public:
 
     void configure(IrrigationConfig cfg);
     void setup();
-    void checkIrrigation();
+    void irrigate();
 };
 
 #endif /* IRRIGATION_H_ */
