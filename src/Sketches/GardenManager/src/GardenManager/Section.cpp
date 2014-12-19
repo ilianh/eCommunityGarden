@@ -1,5 +1,7 @@
 #include "Section.h"
 #include "LightSensor.h"
+#include "MoistureSensor.h"
+#include "TemperatureHumiditySensor.h"
 #include <stddef.h>
 
 Section::Section()

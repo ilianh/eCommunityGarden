@@ -12,7 +12,7 @@ int wateringPin       = 9;
 
 void checkIrrigation()
 {
-  int moistureValue = getMoistureValue();
+  int moistureValue = 0; //getMoistureValue();
 
   if (moistureValue < threshold)
   {

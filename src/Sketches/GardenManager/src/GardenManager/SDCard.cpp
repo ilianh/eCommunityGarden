@@ -1,5 +1,4 @@
 #include <Arduino.h>
-
 #include <SD.h>
 #include "Logger.h"
 #include "SDCard.h"

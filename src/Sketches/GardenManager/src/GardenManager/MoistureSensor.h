@@ -1,17 +1,17 @@
 #ifndef MOISTURESENSOR_H_
 #define MOISTURESENSOR_H_
-
-int getMoistureValue();
+#include "Config.h"
 
 class MoistureSensor
 {
 public:
     
-    MoistureSensor m_cfg;
+    MoistureSensorConfig m_cfg;
     int m_iValue;
 
     void configure(MoistureSensorConfig cfg);
     void setup();
+    int getValue();
 
 };
 

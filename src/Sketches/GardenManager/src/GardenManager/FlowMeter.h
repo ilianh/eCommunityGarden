@@ -7,7 +7,7 @@ class FlowMeter
 {
 public:
 
-    FlowMeterConfig m_cfg
+    FlowMeterConfig m_cfg;
     volatile byte m_bFlowPulseCount;
     
     void configure(FlowMeterConfig cfg); 

@@ -23,7 +23,7 @@ struct MoistureSensorConfig
     int sensorPin;
 };
 
-struct TemperatureHumidityConfig
+struct TemperatureHumiditySensorConfig
 {
     int dht11Pin;
 };
@@ -32,19 +32,19 @@ struct FlowMeterConfig
 {
     int sensorPin;
     byte sensorInterrupt;
-}
+};
 
 struct SDCardConfig
 {
     int sdCardPin;
     int chipSelect;
-}
+};
 
 struct SectionConfig
 {
     LightSensorConfig l0;
     MoistureSensorConfig m0;
-    TemperatureHumidityConfig th0;
+    TemperatureHumiditySensorConfig th0;
 };
 
 struct FarmConfig
@@ -53,9 +53,9 @@ struct FarmConfig
     int powerLedPin;
     int errorPin;
 
-    FlowMeterConfig fm0;
-    SDCardConfig sd0;
     SectionConfig s0;
+    SDCardConfig sd0;
+    FlowMeterConfig fm0;
 };
 
 #endif // CONFIG_H_
