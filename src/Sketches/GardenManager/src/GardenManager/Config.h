@@ -33,6 +33,12 @@ struct FlowMeterConfig
     byte sensorInterrupt;
 }
 
+struct SDCardConfig
+{
+    int sdCardPin;
+    int chipSelect;
+}
+
 struct SectionConfig
 {
     LightSensorConfig l0;
@@ -47,6 +53,7 @@ struct FarmConfig
     int errorPin;
 
     FlowMeterConfig fm0;
+    SDCardConfig sd0;
     SectionConfig s0;
 };
 

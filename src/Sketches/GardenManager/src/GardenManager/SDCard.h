@@ -4,11 +4,9 @@
 class SDCard
 {
 public:
-    int m_iChipSelect;
-    int m_iSdCardPin;
-
-    SDCard();
-    void init();
+    SDCardConfig m_cfg
+    void configure(SDCard cfg);
+    void setup();
 };
 
 #endif /* SDCARD_H_ */
