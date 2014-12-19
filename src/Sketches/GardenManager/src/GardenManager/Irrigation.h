@@ -1,8 +1,16 @@
 #ifndef IRRIGATION_H_
 #define IRRIGATION_H_
 
-void checkIrrigation();
+#include "Config.h"
 
-void initIrrigation();
+class Irrigation
+{
+public:
+    IrrigationConfig m_cfg;
+
+    void configure(IrrigationConfig cfg);
+    void setup();
+    void checkIrrigation();
+};
 
 #endif /* IRRIGATION_H_ */
