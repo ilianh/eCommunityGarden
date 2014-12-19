@@ -10,7 +10,7 @@ public:
     LightSensorConfig m_cfg;
 
     void configure(LightSensorConfig cfg);
-    void init();
+    void setup();
     int getValue();
 };
 
