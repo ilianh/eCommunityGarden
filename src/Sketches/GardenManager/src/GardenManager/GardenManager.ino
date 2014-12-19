@@ -16,9 +16,6 @@
 #include "Time.h"
 #include "Irrigation.h"
 
-// Set the delay between each loop (in milliseconds)
-int delayTime = 2000;
-
 Farm farm;
 
 void setup()
@@ -31,39 +28,5 @@ void setup()
 
 void loop ()    
 {
-  loopGardenManager();
+  farm.loop();
 }
-
-void loopGardenManager()
-{
-  logStart();
-  
-  char* dateTime = getTime();
-  
-  logStringValue("T", dateTime);
-  
-  //float flowRateValue = getFlowRate();
-  
-  int moistureValue = 0;//getMoistureValue();
-  
-  int lightValue = farm.m_pSections[0]->m_pLightSensor->getValue();
-
-  //checkHumidityTemperatureValues();
-
-  float temperatureValue = 0;//getTemperatureValue();
-  
-  float humidityValue = 0;//getHumidityValue();
-
-  logIntValue("Mst", moistureValue);
-  logIntValue("Lt", lightValue);
-  logFloatValue("Hm", humidityValue, 1);
-  logFloatValue("Tmp", temperatureValue, 1);
-  //logFloatValue("Fl", flowRateValue, 4);
-  logFinish();
-
-  checkIrrigation();
-  
-  delay(delayTime);
-}
-
-

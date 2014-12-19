@@ -49,6 +49,8 @@ struct SectionConfig
 
 struct FarmConfig
 {
+    int delayTime;
+    
     // Declare output pins
     int powerLedPin;
     int errorPin;

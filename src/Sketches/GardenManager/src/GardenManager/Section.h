@@ -21,6 +21,7 @@ public:
     
     void configure(SectionConfig cfg);
     void setup();
+    void loop();
 };
 
 #endif // SECTION_H_

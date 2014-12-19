@@ -3,6 +3,7 @@
 #include "MoistureSensor.h"
 #include "TemperatureHumiditySensor.h"
 #include <stddef.h>
+#include "Logger.h"
 
 Section::Section()
 {
@@ -35,4 +36,14 @@ void Section::setup()
     m_pMoistureSensor->setup();
     m_pTemperatureHumiditySensor->setup();
     //...
+}
+
+void Section::loop()
+{
+    m_pTemperatureHumiditySensor->read();
+    
+    logIntValue("Mst", m_pMoistureSensor->getValue());
+    logFloatValue("Tmp", m_pTemperatureHumiditySensor->getTemperatureValue(), 1);
+    logIntValue("Lt", m_pLightSensor->getValue());
+    logFloatValue("Hm", m_pTemperatureHumiditySensor->getHumidityValue(), 1);
 }

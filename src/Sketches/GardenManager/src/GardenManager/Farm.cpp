@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include <string.h>
 #include <Arduino.h>
+#include "Logger.h"
+#include "Time.h"
 
 Farm::Farm() : m_iSectionCount(0), m_pSections(NULL)
 {
@@ -41,7 +43,7 @@ FarmConfig Farm::loadConfig()
     // farm / FlowMeter 0
     struct FlowMeterConfig fm0 = {2, 0};
     // farm
-    struct FarmConfig cfg = {14, 16, s0, sd0, fm0};
+    struct FarmConfig cfg = {2000, 14, 16, s0, sd0, fm0};
     
     return cfg;
 }
@@ -75,11 +77,29 @@ void Farm::setup()
     for(unsigned int i = 0; i < m_iSectionCount; i++)
         m_pSections[i]->setup();
 
-    m_pFlowMeter->setup();
     //initIrrigation();
+    m_pFlowMeter->setup();
     
     pinMode(m_cfg.powerLedPin, OUTPUT);
     pinMode(m_cfg.errorPin, OUTPUT);
     
     digitalWrite(m_cfg.powerLedPin, HIGH);
+}
+
+void Farm::loop()
+{
+    logStart();
+    
+    char* dateTime = getTime();
+    logStringValue("T", dateTime);
+    
+    for(unsigned int i = 0; i < m_iSectionCount; i++)
+        m_pSections[i]->loop();
+    
+    //checkIrrigation();
+    logFloatValue("Fl", m_pFlowMeter->getFlowRate(), 4);
+
+    logFinish();
+    
+    delay(m_cfg.delayTime);
 }

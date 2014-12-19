@@ -18,7 +18,7 @@ public:
     void setup();
     float getHumidityValue();
     float getTemperatureValue();
-    void checkHumidityTemperatureValues();
+    void read();
 };
 
 #endif /* TEMPERATUREHUMIDITYSENSOR_H_ */

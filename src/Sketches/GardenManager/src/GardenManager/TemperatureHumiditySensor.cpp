@@ -13,7 +13,7 @@ void TemperatureHumiditySensor::setup()
     //...
 }
 
-void TemperatureHumiditySensor::checkHumidityTemperatureValues()
+void TemperatureHumiditySensor::read()
 {
   int err;
   if((err=m_pDht11->read(m_fHumidityValue, m_fTemperatureValue))==0)

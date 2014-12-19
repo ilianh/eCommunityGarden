@@ -23,6 +23,7 @@ public:
     void addSection(Section *pSection);
     void configure(FarmConfig cfg);
     void setup();
+    void loop();
 };
 
 #endif // FARM_H_
