@@ -14,10 +14,11 @@ public:
     float m_fTemperatureValue;
     DHT11 *m_pDht11;
 
+    void configure(TemperatureHumiditySensorConfig cfg);
+    void setup();
     float getHumidityValue();
     float getTemperatureValue();
     void checkHumidityTemperatureValues();
-    void setup();
 };
 
 #endif /* TEMPERATUREHUMIDITYSENSOR_H_ */

@@ -15,10 +15,10 @@ Section::~Section()
 {
     delete m_pLightSensor;
     m_pLightSensor = NULL;
-    delete m_pMoistureSensor();
-    m_pMoistureSensor();
-    delete m_pTemperatureHumiditySensor();
-    m_pTemperatureHumiditySensor();
+    delete m_pMoistureSensor;
+    m_pMoistureSensor = NULL;
+    delete m_pTemperatureHumiditySensor;
+    m_pTemperatureHumiditySensor = NULL;
 }
 
 void Section::configure(SectionConfig cfg)
