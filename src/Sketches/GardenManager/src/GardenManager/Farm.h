@@ -4,6 +4,8 @@
 #include "Config.h"
 
 class Section;
+class SDCard;
+class FlowMeter;
 
 class Farm
 {
@@ -12,6 +14,8 @@ public:
     FarmConfig m_cfg;
     unsigned int m_iSectionCount;
     Section **m_pSections;
+    SDCard *m_pSDCard;
+    FlowMeter *m_pFlowMeter;
     
     Farm();
     ~Farm();

@@ -1,5 +1,7 @@
 #include "Farm.h"
 #include "Section.h"
+#include "FlowMeter.h"
+#include "SDCard.h"
 #include <stddef.h>
 #include <string.h>
 #include <Arduino.h>
@@ -7,6 +9,8 @@
 Farm::Farm() : m_iSectionCount(0), m_pSections(NULL)
 {
     addSection(new Section());
+    m_pSDCard = new SDCard();
+    m_pFlowMeter = new FlowMeter();
     //...
 }
 
@@ -16,6 +20,10 @@ Farm::~Farm()
         delete m_pSections[i];
     delete[] m_pSections;
     m_pSections = NULL;
+    delete m_pFlowMeter;
+    m_pFlowMeter = NULL;
+    delete m_pSDCard;
+    m_pSDCard = NULL;
 }
 
 FarmConfig Farm::loadConfig()
@@ -54,18 +62,20 @@ void Farm::configure(FarmConfig cfg)
 {
     m_cfg = cfg;
     m_pSections[0]->configure(m_cfg.s0);
+    m_pSDCard->configure(m_cfg.sd0);
+    m_pFlowMeter->configure(m_cfg.fm0);
 }
 
 void Farm::setup()
 {
     Serial.println("Setting up Farm...");
     
-    //initSDCard();
+    m_pSDCard->setup();;
     
     for(unsigned int i = 0; i < m_iSectionCount; i++)
         m_pSections[i]->setup();
 
-    //initFlowMeter();
+    m_pFlowMeter->setup();
     //initIrrigation();
     
     pinMode(m_cfg.powerLedPin, OUTPUT);
