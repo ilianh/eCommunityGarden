@@ -20,10 +20,14 @@ Farm::~Farm()
 
 FarmConfig Farm::loadConfig()
 {
+    // farm / section 0 / moisturecensor 0
+    struct MoistureSensorConfig s0_m0 = {1030, 350, 100, 0, A4};
+    // farm / section 0 / temphumcensor 0
+    struct TemperatureHumidityConfig s0_th0 = {3};
     // farm / section 0 / lightsensor 0
     struct LightSensorConfig s0_l0 = {1000, 0, 100, 0, A3, 8, 80};
     // farm / section 0
-    struct SectionConfig s0 = {s0_l0};
+    struct SectionConfig s0 = {s0_l0, s0_m0, s0_th0};
     // farm
     struct FarmConfig cfg = {14, 16, s0};
     
