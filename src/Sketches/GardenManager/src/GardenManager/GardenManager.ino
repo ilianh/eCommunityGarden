@@ -6,6 +6,7 @@
 #include <DS1302.h>
 
 #include "Farm.h"
+#include "Section.h"
 #include "SDCard.h"
 #include "Logger.h"
 #include "FlowMeter.h"
@@ -22,7 +23,7 @@ int errorPin          = 16;
 // Set the delay between each loop (in milliseconds)
 int delayTime = 2000;
 
-Farm farm();
+Farm farm;
 
 void setup() //
 {
@@ -72,7 +73,7 @@ void loopGardenManager()
   
   int moistureValue = getMoistureValue();
   
-  int lightValue = lightSensor.getValue();
+  int lightValue = farm.m_pSections[0]->m_pLightSensor->getValue();
 
   checkHumidityTemperatureValues();
 
