@@ -14,7 +14,6 @@ Farm::Farm() : m_iSectionCount(0), m_pSections(NULL)
     m_pSDCard = new SDCard();
     m_pFlowMeter = new FlowMeter();
     m_pIrrigation = new Irrigation();
-    addSection(new Section());
 }
 
 Farm::~Farm()
@@ -33,6 +32,7 @@ Farm::~Farm()
 
 FarmConfig Farm::loadConfig()
 {
+    // SECTION 0
     // farm / section 0 / moisturecensor 0
     struct MoistureSensorConfig s0_m0 = {1030, 350, 100, 0, A4};
     // farm / section 0 / temphumcensor 0
@@ -41,6 +41,18 @@ FarmConfig Farm::loadConfig()
     struct LightSensorConfig s0_l0 = {1000, 0, 100, 0, A3, 8, 80};
     // farm / section 0
     struct SectionConfig s0 = {s0_l0, s0_m0, s0_th0};
+    
+    // SECTION 1
+    // farm / section 1 / moisturecensor 0
+    struct MoistureSensorConfig s1_m0 = {1030, 350, 100, 0, A4};
+    // farm / section 1 / temphumcensor 0
+    struct TemperatureHumiditySensorConfig s1_th0 = {3};
+    // farm / section 1 / lightsensor 0
+    struct LightSensorConfig s1_l0 = {1000, 0, 100, 0, A3, 8, 80};
+    // farm / section 1
+    struct SectionConfig s1 = {s1_l0, s1_m0, s1_th0};
+    
+    // FARM
     // farm / SDCard 0
     struct SDCardConfig sd0 = {4, 10};
     // farm / FlowMeter 0
@@ -48,7 +60,7 @@ FarmConfig Farm::loadConfig()
     // farm / Irrigation 0
     struct IrrigationConfig i0 = {20, 15, 9};
     // farm
-    struct FarmConfig cfg = {2000, 14, 16, s0, sd0, fm0, i0};
+    struct FarmConfig cfg = {2000, 14, 16, sd0, fm0, i0, s0, s1};
     
     return cfg;
 }
@@ -68,10 +80,16 @@ void Farm::addSection(Section *pSection)
 void Farm::configure(FarmConfig cfg)
 {
     m_cfg = cfg;
-    m_pSections[0]->configure(m_cfg.s0);
+    
     m_pSDCard->configure(m_cfg.sd0);
     m_pFlowMeter->configure(m_cfg.fm0);
     m_pIrrigation->configure(m_cfg.i0);
+    
+    addSection(new Section());
+    m_pSections[0]->configure(m_cfg.s0);
+    
+    addSection(new Section());
+    m_pSections[1]->configure(m_cfg.s1);
 }
 
 void Farm::setup()

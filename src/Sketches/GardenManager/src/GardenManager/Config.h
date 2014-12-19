@@ -2,6 +2,8 @@
 #define CONFIG_H_
 #include "Arduino.h"
 
+#define SECTIONS 2
+
 struct LightSensorConfig
 {
     int sensorHigh, sensorLow, valueHigh, valueLow;
@@ -52,10 +54,10 @@ struct FarmConfig
     int delayTime;
     int powerLedPin;
     int errorPin;
-    SectionConfig s0;
     SDCardConfig sd0;
     FlowMeterConfig fm0;
     IrrigationConfig i0;
+    SectionConfig s0, s1;
 };
 
 #endif // CONFIG_H_
