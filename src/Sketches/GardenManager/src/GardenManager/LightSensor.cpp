@@ -1,20 +1,21 @@
 #include <Arduino.h>
 #include "Logger.h"
+#include "LightSensor.h"
 
-LightSensor::LightSensor(int sH, int sL, int vH, int vL, int sP, int cP, int cT) : sensorHigh(sH), sensorLow(sL), valueHigh(vH), valueLow(vL), sensorPin(sP), controlPin(cP), controlThreshold(cT) {}
+LightSensor::LightSensor(int sH, int sL, int vH, int vL, int sP, int cP, int cT) : m_iSensorHigh(sH), m_iSensorLow(sL), m_iValueHigh(vH), m_iValueLow(vL), m_iSensorPin(sP), m_iControlPin(cP), m_iControlThreshold(cT) {}
 
 void LightSensor::init()
 {
-  pinMode(controlPin, OUTPUT);
+  pinMode(m_iControlPin, OUTPUT);
 }
   
 int LightSensor::getValue()
 {
-  int value = analogRead(sensorPin);
+  int value = analogRead(m_iSensorPin);
   
-  value = map(value, sensorHigh, sensorLow, valueLow, valueHigh);
+  value = map(value, m_iSensorHigh, m_iSensorLow, m_iValueLow, m_iValueHigh);
   
-  int lightOutputValue = map(value, controlThreshold, 0, 0, 255);
+  int lightOutputValue = map(value, m_iControlThreshold, 0, 0, 255);
   
   if (lightOutputValue < 0)
     lightOutputValue == 0;
@@ -22,10 +23,10 @@ int LightSensor::getValue()
   logIntValue("LtOut", lightOutputValue);
   
   // If light levels are low, turn on the grow lights
-  if (value < controlThreshold)
-    analogWrite(controlPin, lightOutputValue);
+  if (value < m_iControlThreshold)
+    analogWrite(m_iControlPin, lightOutputValue);
   else
-    analogWrite(controlPin, 0);
+    analogWrite(m_iControlPin, 0);
   
   return value;
 }

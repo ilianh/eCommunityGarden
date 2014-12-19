@@ -1,9 +1,13 @@
 #ifndef FLOWMETER_CPP_
 #define FLOWMETER_CPP_
-
 #include "Arduino.h"
-
 #include "FlowMeter.h"
+
+FlowMeter::FlowMeter(int fP) : m_iFlowMeterPin(fP) {}
+
+
+
+
 
 byte flowMeterPin        = 2;
 
