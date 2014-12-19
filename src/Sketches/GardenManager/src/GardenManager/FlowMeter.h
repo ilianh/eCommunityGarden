@@ -1,6 +1,8 @@
 #ifndef FLOWMETER_H_
 #define FLOWMETER_H_
 
+#include "Config.h"
+
 class FlowMeter
 {
 public:

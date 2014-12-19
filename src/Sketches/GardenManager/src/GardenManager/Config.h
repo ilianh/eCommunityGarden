@@ -20,12 +20,12 @@ struct MoistureSensorConfig
 {
     int sensorHigh, sensorLow, valueHigh, valueLow;
     int sensorPin;
-}
+};
 
 struct TemperatureHumidityConfig
 {
     int dht11Pin;
-}
+};
 
 struct FlowMeterConfig
 {
