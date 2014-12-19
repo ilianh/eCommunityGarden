@@ -19,3 +19,8 @@ void Section::configure(SectionConfig cfg)
     m_pLightSensor->configure(m_cfg.l0);
 }
 
+void Section::setup()
+{
+    m_pLightSensor->setup();
+    //...
+}

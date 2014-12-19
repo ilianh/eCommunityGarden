@@ -16,6 +16,7 @@ public:
     ~Section();
     
     void configure(SectionConfig cfg);
+    void setup();
 };
 
 #endif // SECTION_H_

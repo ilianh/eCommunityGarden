@@ -16,49 +16,22 @@
 #include "Time.h"
 #include "Irrigation.h"
 
-// LED pins
-int powerLedPin       = 14;
-int errorPin          = 16;
-
 // Set the delay between each loop (in milliseconds)
 int delayTime = 2000;
 
 Farm farm;
 
-void setup() //
+void setup()
 {
-  Serial.begin(9600); //This is the setup function where the serial port is 
+    Serial.begin(9600); //This is the setup function where the serial port is
 
-  setupGardenManager();
-} 
+    farm.configure(farm.loadConfig());
+    farm.setup();
+}
 
 void loop ()    
 {
   loopGardenManager();
-}
-
-void setupGardenManager()
-{
-  Serial.println("Setting up GardenManager...");
-
-  farm.configure();
-  // TODO init...
-
-  // Initialize the flow meter
-  //initFlowMeter();
-  
-  // Initialize the SD card
-  //initSDCard();
-
-  // Initialize the irrigation
-  //initIrrigation();
-
-  // Declare output pins
-  pinMode(powerLedPin, OUTPUT);  
-  pinMode(errorPin, OUTPUT);
- 
-  // Turn the power LED on
-  digitalWrite(powerLedPin, HIGH);
 }
 
 void loopGardenManager()

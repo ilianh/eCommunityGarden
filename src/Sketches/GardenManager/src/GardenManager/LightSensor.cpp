@@ -7,11 +7,11 @@ void LightSensor::configure(LightSensorConfig cfg)
     m_cfg = cfg;
 }
 
-void LightSensor::init()
+void LightSensor::setup()
 {
   pinMode(m_cfg.controlPin, OUTPUT);
 }
-  
+
 int LightSensor::getValue()
 {
   int value = analogRead(m_cfg.sensorPin);

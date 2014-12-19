@@ -21,4 +21,13 @@ struct SectionConfig
     LightSensorConfig l0;
 };
 
+struct FarmConfig
+{
+    // Declare output pins
+    int powerLedPin;
+    int errorPin;
+    
+    SectionConfig s0;
+};
+
 #endif // CONFIG_H_
