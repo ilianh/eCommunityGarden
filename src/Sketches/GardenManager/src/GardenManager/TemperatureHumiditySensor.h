@@ -3,7 +3,7 @@
 
 #include "Config.h"
 
-class DHT11
+class DHT11;
 
 class TemperatureHumiditySensor
 {
@@ -18,5 +18,6 @@ public:
     float getTemperatureValue();
     void checkHumidityTemperatureValues();
     void setup();
+};
 
 #endif /* TEMPERATUREHUMIDITYSENSOR_H_ */

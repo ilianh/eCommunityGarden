@@ -44,15 +44,15 @@ void loopGardenManager()
   
   //float flowRateValue = getFlowRate();
   
-  int moistureValue = getMoistureValue();
+  int moistureValue = 0;//getMoistureValue();
   
   int lightValue = farm.m_pSections[0]->m_pLightSensor->getValue();
 
-  checkHumidityTemperatureValues();
+  //checkHumidityTemperatureValues();
 
-  float temperatureValue = getTemperatureValue();
+  float temperatureValue = 0;//getTemperatureValue();
   
-  float humidityValue = getHumidityValue();
+  float humidityValue = 0;//getHumidityValue();
 
   logIntValue("Mst", moistureValue);
   logIntValue("Lt", lightValue);
