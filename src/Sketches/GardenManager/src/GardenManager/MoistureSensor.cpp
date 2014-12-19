@@ -10,9 +10,8 @@ void MoistureSensor::configure(MoistureSensorConfig cfg)
 
 int MoistureSensor::getValue()
 {
-    int value;
-    value = analogRead(m_cfg.sensorPin);    
-    value = map(value, m_cfg.sensorHigh, m_cfg.sensorLow, m_cfg.valueLow, c_cfg.valueHigh);
-    return value;
+    m_iValue = analogRead(m_cfg.sensorPin);    
+    m_iValue = map(m_iValue, m_cfg.sensorHigh, m_cfg.sensorLow, m_cfg.valueLow, c_cfg.valueHigh);
+    return m_iValue;
 
 }

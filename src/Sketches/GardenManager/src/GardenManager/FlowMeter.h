@@ -4,13 +4,11 @@
 class FlowMeter
 {
 public:
-    // Declare the pin that measures flow
-    int m_iFlowMeterPin;
+
+    FlowMeterConfig m_cfg
     volatile byte m_bFlowPulseCount;
-    byte m_bSensorInterrupt; //0 = pin2; 1 = pin3
     
-    FlowMeter(int fP, byte fC, byte sI);
-    
+    void configure(FlowMeterConfig cfg); 
     void init();
     void flowPulseCounter();
     float getFlowRate();

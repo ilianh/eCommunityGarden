@@ -3,19 +3,22 @@
 #include "Arduino.h"
 #include "FlowMeter.h"
 
-FlowMeter::FlowMeter(int fP, byte fC, byte sI) : m_iFlowMeterPin(fP), m_bFlowPulseCount(fC), m_bSensorInterrupt(sI) {}
+void FlowMeter::configure(FlowMeterConfig cfg)
+{
+    m_cfg = cfg;
+}
 
 void FlowMeter::init()
 {
-    pinMode(m_iFlowMeterPin, INPUT);
-    digitalWrite(m_iFlowMeterPin, HIGH);
+    pinMode(m_cfg.sensorPin, INPUT);
+    digitalWrite(m_cfg.sensorPin, HIGH);
 
     // The Hall-effect sensor is connected to pin 2 which uses interrupt 0.
     // Configured to trigger on a FALLING state change (transition from HIGH
     // state to LOW state)
     
     //[TODO] 
-    //attachInterrupt(m_bSensorInterrupt, flowPulseCounter, FALLING);
+    //attachInterrupt(m_cfg.sensorInterrupt, flowPulseCounter, FALLING);
 }
 
 
@@ -43,7 +46,8 @@ float FlowMeter::getFlowRate()
   { 
     // Disable the interrupt while calculating flow rate and sending the value to
     // the host
-    detachInterrupt(m_bSensorInterrupt);
+    //[TODO]
+    //detachInterrupt(m_cfg.sensorInterrupt);
     //lcd.setCursor(15, 0);
     //lcd.print("*");
     
@@ -85,7 +89,7 @@ float FlowMeter::getFlowRate()
     
     // Enable the interrupt again now that we've finished sending output
     // [TODO]
-    //attachInterrupt(m_bSensorInterrupt, flowPulseCounter, FALLING);
+    //attachInterrupt(m_cfg.sensorInterrupt, flowPulseCounter, FALLING);
   }
 
   return flowRate;

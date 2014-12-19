@@ -7,7 +7,8 @@ class MoistureSensor
 {
 public:
     
-    MoistureSensor m_cfg
+    MoistureSensor m_cfg;
+    int m_iValue;
 
     void configure(MoistureSensorConfig cfg);
     void init();

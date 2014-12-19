@@ -22,10 +22,12 @@ struct MoistureSensorConfig
     int sensorPin;
 }
 
+
 struct SectionConfig
 {
     LightSensorConfig l0;
     MoistureSensorConfig m0;
+    FlowMeterConfig f0;
 };
 
 #endif // CONFIG_H_
