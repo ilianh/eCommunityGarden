@@ -11,7 +11,7 @@ public:
     int m_iValue;
 
     void configure(MoistureSensorConfig cfg);
-    void init();
+    void setup();
 
 };
 

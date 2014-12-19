@@ -8,6 +8,11 @@ void MoistureSensor::configure(MoistureSensorConfig cfg)
     m_cfg = cfg;
 }
 
+void MoistureSensor::setup()
+{
+    //...
+}
+
 int MoistureSensor::getValue()
 {
     m_iValue = analogRead(m_cfg.sensorPin);    
