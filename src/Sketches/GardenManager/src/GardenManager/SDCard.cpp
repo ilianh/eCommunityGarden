@@ -2,16 +2,16 @@
 
 #include <SD.h>
 #include "Logger.h"
+#include "SDCard.h"
 
-int chipSelect        = 4;
-int sdCardPin         = 10;
+SDCard::SDCard(){}
 
-void initSDCard()
+void SDCard::init()
 {
-  pinMode(sdCardPin, OUTPUT);
+  pinMode(m_iSdCardPin, OUTPUT);
   
   // see if the card is present and can be initialized:
-  if (!SD.begin(chipSelect)) {
+  if (!SD.begin(m_iChipSelect)) {
     logError("Failed to write to SD card.");
     // don't do anything more:
     return;

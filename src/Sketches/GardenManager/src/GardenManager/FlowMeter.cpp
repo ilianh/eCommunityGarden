@@ -3,43 +3,33 @@
 #include "Arduino.h"
 #include "FlowMeter.h"
 
-FlowMeter::FlowMeter(int fP) : m_iFlowMeterPin(fP) {}
+FlowMeter::FlowMeter(int fP, byte fC, byte sI) : m_iFlowMeterPin(fP), m_bFlowPulseCount(fC), m_bSensorInterrupt(sI) {}
 
+void FlowMeter::init()
+{
+    pinMode(m_iFlowMeterPin, INPUT);
+    digitalWrite(m_iFlowMeterPin, HIGH);
 
+    // The Hall-effect sensor is connected to pin 2 which uses interrupt 0.
+    // Configured to trigger on a FALLING state change (transition from HIGH
+    // state to LOW state)
+    
+    //[TODO] 
+    //attachInterrupt(m_bSensorInterrupt, flowPulseCounter, FALLING);
+}
 
-
-
-byte flowMeterPin        = 2;
-
-volatile byte flowPulseCount;  
-
-// Flow meter variables
-
-// Interrupt settings
-byte sensorInterrupt       = 0;  // 0 = pin 2; 1 = pin 3
 
 /**
  * Invoked by interrupt0 once per rotation of the hall-effect sensor. Interrupt
  * handlers should be kept as small as possible so they return quickly.
  */
-void flowPulseCounter()
+void FlowMeter::flowPulseCounter()
 {
   // Increment the pulse counter
-  flowPulseCount++;
+  m_bFlowPulseCount++;
 }
 
-void initFlowMeter()
-{
-  pinMode(flowMeterPin, INPUT);
-  digitalWrite(flowMeterPin, HIGH);
-
-  // The Hall-effect sensor is connected to pin 2 which uses interrupt 0.
-  // Configured to trigger on a FALLING state change (transition from HIGH
-  // state to LOW state)
-  attachInterrupt(sensorInterrupt, flowPulseCounter, FALLING);
-}
-
-float getFlowRate()
+float FlowMeter::getFlowRate()
 {
   float flowRate;
 
@@ -53,7 +43,7 @@ float getFlowRate()
   { 
     // Disable the interrupt while calculating flow rate and sending the value to
     // the host
-    detachInterrupt(sensorInterrupt);
+    detachInterrupt(m_bSensorInterrupt);
     //lcd.setCursor(15, 0);
     //lcd.print("*");
     
@@ -62,7 +52,7 @@ float getFlowRate()
     // that to scale the output. We also apply the calibrationFactor to scale the output
     // based on the number of pulses per second per units of measure (litres/minute in
     // this case) coming from the sensor.
-    flowRate = ((1000.0 / (millis() - oldTime)) * flowPulseCount) / calibrationFactor;
+    flowRate = ((1000.0 / (millis() - oldTime)) * m_bFlowPulseCount) / calibrationFactor;
     
     // Note the time this processing pass was executed. Note that because we've
     // disabled interrupts the millis() function won't actually be incrementing right
@@ -91,10 +81,11 @@ float getFlowRate()
     unsigned int frac;
 
     // Reset the pulse counter so we can start incrementing again
-    flowPulseCount = 0;
+    m_bFlowPulseCount = 0;
     
     // Enable the interrupt again now that we've finished sending output
-    attachInterrupt(sensorInterrupt, flowPulseCounter, FALLING);
+    // [TODO]
+    //attachInterrupt(m_bSensorInterrupt, flowPulseCounter, FALLING);
   }
 
   return flowRate;

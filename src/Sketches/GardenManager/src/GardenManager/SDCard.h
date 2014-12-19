@@ -1,6 +1,14 @@
 #ifndef SDCARD_H_
 #define SDCARD_H_
 
-void initSDCard();
+class SDCard
+{
+public:
+    int m_iChipSelect;
+    int m_iSdCardPin;
 
-#endif /* TIME_H_ */
+    SDCard();
+    void init();
+};
+
+#endif /* SDCARD_H_ */

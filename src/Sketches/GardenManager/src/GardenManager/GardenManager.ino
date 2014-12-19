@@ -39,13 +39,13 @@ void setupGardenManager()
   Serial.println("Setting up GardenManager...");
 
   // Initialize the flow meter
-  initFlowMeter();
+  //initFlowMeter();
   
   // Initialize the SD card
-  initSDCard();
+  //initSDCard();
 
   // Initialize the irrigation
-  initIrrigation();
+  //initIrrigation();
   
   // Initialize the light sensor and light control
   lightSensor.init();
@@ -66,7 +66,7 @@ void loopGardenManager()
   
   logStringValue("T", dateTime);
   
-  float flowRateValue = getFlowRate();
+  //float flowRateValue = getFlowRate();
   
   int moistureValue = getMoistureValue();
   
@@ -82,7 +82,7 @@ void loopGardenManager()
   logIntValue("Lt", lightValue);
   logFloatValue("Hm", humidityValue, 1);
   logFloatValue("Tmp", temperatureValue, 1);
-  logFloatValue("Fl", flowRateValue, 4);
+  //logFloatValue("Fl", flowRateValue, 4);
   logFinish();
 
   checkIrrigation();
