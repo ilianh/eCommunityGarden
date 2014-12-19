@@ -3,6 +3,8 @@
 
 #include "Config.h"
 
+class DHT11
+
 class TemperatureHumiditySensor
 {
 public:
@@ -10,6 +12,7 @@ public:
     TemperatureHumiditySensorConfig m_cfg;
     float m_fHumidityValue;
     float m_fTemperatureValue;
+    DHT11 *m_pDht11;
 
     float getHumidityValue();
     float getTemperatureValue();
