@@ -16,9 +16,16 @@ struct LightSensorConfig
     int controlThreshold;
 };
 
+struct MoistureSensorConfig
+{
+    int sensorHigh, sensorLow, valueHigh, valueLow;
+    int sensorPin;
+}
+
 struct SectionConfig
 {
     LightSensorConfig l0;
+    MoistureSensorConfig m0;
 };
 
 #endif // CONFIG_H_
