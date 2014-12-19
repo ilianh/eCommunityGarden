@@ -60,7 +60,7 @@ FarmConfig Farm::loadConfig()
     // farm / Irrigation 0
     struct IrrigationConfig i0 = {20, 15, 9};
     // farm
-    struct FarmConfig cfg = {2000, 14, 16, sd0, fm0, i0, s0, s1};
+    struct FarmConfig cfg = {2000, 14, 16, sd0, fm0, i0, 2, {s0, s1}};
     
     return cfg;
 }
@@ -85,11 +85,11 @@ void Farm::configure(FarmConfig cfg)
     m_pFlowMeter->configure(m_cfg.fm0);
     m_pIrrigation->configure(m_cfg.i0);
     
-    addSection(new Section());
-    m_pSections[0]->configure(m_cfg.s0);
-    
-    addSection(new Section());
-    m_pSections[1]->configure(m_cfg.s1);
+    for(unsigned int i = 0; i < m_cfg.sectionCount; i++)
+    {
+        addSection(new Section());
+        m_pSections[i]->configure(m_cfg.s[i]);
+    }
 }
 
 void Farm::setup()

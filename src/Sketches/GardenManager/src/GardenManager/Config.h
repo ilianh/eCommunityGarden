@@ -57,7 +57,8 @@ struct FarmConfig
     SDCardConfig sd0;
     FlowMeterConfig fm0;
     IrrigationConfig i0;
-    SectionConfig s0, s1;
+    unsigned int sectionCount;
+    SectionConfig s[2];
 };
 
 #endif // CONFIG_H_
