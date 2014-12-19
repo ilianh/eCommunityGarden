@@ -7,15 +7,15 @@ void TemperatureHumiditySensor::configure(TemperatureHumiditySensorConfig cfg)
    m_pDht11(m_cfg.dht11Pin);
 } 
 
-void TemperatureHumiditySensor::init()
+void TemperatureHumiditySensor::setup()
 {
+    //...
 }
-
 
 void TemperatureHumiditySensor::checkHumidityTemperatureValues()
 {
   int err;
-  if((err=dht11.read(&m_fHumidityValue, &m_fTemperatureValue))==0)
+  if((err=dht11.read(m_fHumidityValue, m_fTemperatureValue))==0)
   {
   }
   else
