@@ -1,9 +1,11 @@
 #include "Arduino.h"
 
+#include <SPI.h>
 #include <SD.h>
 #include <DHT11.h>
 #include <DS1302.h>
 
+#include "Farm.h"
 #include "SDCard.h"
 #include "Logger.h"
 #include "FlowMeter.h"
@@ -20,7 +22,7 @@ int errorPin          = 16;
 // Set the delay between each loop (in milliseconds)
 int delayTime = 2000;
 
-LightSensor lightSensor(1000, 0, 100, 0, A3, 8, 80);
+Farm farm();
 
 void setup() //
 {
@@ -38,6 +40,9 @@ void setupGardenManager()
 {
   Serial.println("Setting up GardenManager...");
 
+  farm.configure();
+  // TODO init...
+
   // Initialize the flow meter
   initFlowMeter();
   
@@ -46,9 +51,6 @@ void setupGardenManager()
 
   // Initialize the irrigation
   initIrrigation();
-  
-  // Initialize the light sensor and light control
-  lightSensor.init();
 
   // Declare output pins
   pinMode(powerLedPin, OUTPUT);  
